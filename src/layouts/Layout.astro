@@ -20,7 +20,7 @@ const pageLang = lang || i18n?.defaultLocale || "zh-cn";
 ---
 
 <!DOCTYPE html>
-<html lang={pageLang} class="h-full">
+<html lang={pageLang} class="h-full" data-aos-enabled={siteConfig.theme.AOS ? "true" : "false"}>
 <head>
     <script is:inline>
         (function() {
@@ -139,6 +139,12 @@ const pageLang = lang || i18n?.defaultLocale || "zh-cn";
 
   html {
     scroll-behavior: smooth;
+  }
+
+  html[data-aos-enabled="false"] [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition-property: none !important;
   }
 </style>
 
