@@ -14,6 +14,7 @@
   const t = i18nit(language);
 
   const apiUrl = siteConfig.comments.backendUrl;
+  const aosAttrs = siteConfig.theme.AOS ? { 'data-aos': 'fade-up' } : {};
 
   let comments: any[] = [];
   let loading = true;
@@ -270,7 +271,7 @@
 <div class="mt-4 max-w-3xl mx-auto border-t border-[var(--button-border-color)]" id="comments">
   <!-- <div class="my-6 border border-[var(--text-color)]/70"></div> -->
   <!-- 评论输入 -->
-  <div data-aos="fade-up" class="mt-4">
+  <div {...aosAttrs} class="mt-4">
     <form on:submit|preventDefault={() => submitComment()} class="space-y-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div class="">
@@ -343,11 +344,11 @@
   <!-- 评论区 -->
   <div class="" id="comments-content">
     {#if !loadingMore && loading}
-      <p data-aos="fade-up" class="text-[var(--text-color)] text-center">{t('comments.loading') || '正在加载评论...'}</p>
+      <p {...aosAttrs} class="text-[var(--text-color)] text-center">{t('comments.loading') || '正在加载评论...'}</p>
     {:else if error}
-      <p data-aos="fade-up" class="text-red-500 text-center">{t('comments.loadFailed') || '加载失败：'}{error}</p>
+      <p {...aosAttrs} class="text-red-500 text-center">{t('comments.loadFailed') || '加载失败：'}{error}</p>
     {:else}
-      <h4 data-aos="fade-up" class="text-[var(--text-color)] text-base font-semibold mb-4">{countComments(comments)} {t('comments.comments')}</h4>
+      <h4 {...aosAttrs} class="text-[var(--text-color)] text-base font-semibold mb-4">{countComments(comments)} {t('comments.comments')}</h4>
 
       <div class="space-y-6">
         {#each comments as c}

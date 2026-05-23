@@ -28,6 +28,7 @@
   export let parentCommentId: string | number | null = null; // 用于锚点跳转的父评论 ID
 
   let isMobile = false;
+  const aosAttrs = siteConfig.theme.AOS ? { 'data-aos': 'fade-up' } : {};
  
   onMount(() => {
     const mql = window.matchMedia('(max-width: 767px)');
@@ -142,7 +143,7 @@
 
 </script>
 
-<div id="comment-{c.id}" data-aos="fade-up" class="flex gap-2 md:gap-3 w-full max-w-full">
+<div id="comment-{c.id}" {...aosAttrs} class="flex gap-2 md:gap-3 w-full max-w-full">
   {#if c.url}
   <a href={c.url} target="_blank" rel="noopener noreferrer" class="w-10 h-10 shrink-0">
     <img src={avatarUrl} alt="avatar" class="w-10 h-10 rounded-full object-cover"/>

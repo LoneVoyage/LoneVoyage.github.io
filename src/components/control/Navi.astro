@@ -2,6 +2,7 @@
 import { i18n } from "astro:config/client";
 import i18nit from '@i18n/translation'
 import { getRelativeLocaleUrl } from '@utils/url-utils';
+import { siteConfig } from "@/config";
 
 const { page } = Astro.props;
 
@@ -51,9 +52,10 @@ const t = i18nit(currentLang);
 const btnBaseClass = "p-2 md:px-4 md:py-2 flex items-center border rounded-lg transition-all duration-200";
 const btnActiveProps = "text-[var(--text-color)] hover:bg-[var(--button-hover-color)] border-[var(--button-border-color)] active:scale-90";
 const btnDisabledProps = "text-[var(--text-color-30)] border-[var(--button-border-color)] opacity-40 cursor-not-allowed pointer-events-none";
+const aosAttrs = siteConfig.theme.AOS ? { "data-aos": "fade-up" } : {};
 ---
 
-<nav data-aos="fade-up" class="flex flex-row justify-between items-center gap-1 my-8 max-w-[var(--page-width)] mx-auto text-sm">
+<nav {...aosAttrs} class="flex flex-row justify-between items-center gap-1 my-8 max-w-[var(--page-width)] mx-auto text-sm">
   
   <a 
     href={showPrevious ? getRelativeLocaleUrl(currentLang, getPageUrl(currentPage - 1)) : "#"} 

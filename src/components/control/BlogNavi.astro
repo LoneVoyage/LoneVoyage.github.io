@@ -2,6 +2,7 @@
 import { i18n } from "astro:config/client";
 import { Icon } from "astro-icon/components";
 import i18nit from '@i18n/translation'
+import { siteConfig } from "@/config";
 
 interface Props {
     prev: any;
@@ -18,9 +19,11 @@ function getPostUrl(id: string) {
   const isDefault = currentLang === i18n?.defaultLocale;
   return isDefault ? `/blog/${id}` : `/${currentLang}/blog/${id}`;
 }
+
+const aosAttrs = siteConfig.theme.AOS ? { "data-aos": "fade-up" } : {};
 ---
 
-<nav data-aos="fade-up" class="mt-8 border-t border-[var(--button-border-color)] pt-4 ">
+<nav {...aosAttrs} class="mt-8 border-t border-[var(--button-border-color)] pt-4 ">
     <div class="flex flex-row items-stretch gap-2 sm:gap-4">
         <div class="flex-1 min-w-0">
             {prev && (
